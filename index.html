@@ -1,0 +1,43 @@
+from flask import Flask, request, jsonify
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Download necessary NLTK data
+nltk.download('punkt')
+
+# Define chatbot responses
+pairs = [
+    ["hello", ["Hello!", "Hi there!"]],
+    ["how are you", ["I'm good, thank you!", "I'm just a chatbot."]],
+    ["bye", ["Goodbye!", "See you later!"]],
+    ["(.*)", ["I'm not sure I understand."]]
+]
+
+# Create chatbot instance
+chatbot = Chat(pairs, reflections)
+
+# Initialize Flask app
+app = Flask(__name__)
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.get_json()
+        user_input = data['input']
+        bot_response = chatbot.respond(user_input)
+        return jsonify({'response': bot_response})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+# Run chatbot in terminal
+if __name__ == "_main_":
+    print("Chatbot is running! Type 'exit' to stop.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "exit":
+            print("Chatbot: Goodbye!")
+            break
+        response = chatbot.respond(user_input)
+        print("Chatbot:", response)
+        print("Script executed successfully!")
+        print("Debug:Script is running")
