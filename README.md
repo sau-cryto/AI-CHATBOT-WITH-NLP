@@ -1,5 +1,18 @@
 # AI-CHATBOT-WITH-NLP
 
+*Company*:Codetech IT Solutions
+
+*Name*:Rajshree Nandkumar Gholase
+
+*Intern ID*:CT08VLH
+
+*Domain*:Python Programming
+
+*Duration*:4 Weeks
+
+*Mentor*:Neela Santhosh Kumar
+
+
 
 1. Overview
 
